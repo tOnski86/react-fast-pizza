@@ -45,6 +45,7 @@ function CreateOrder() {
     <div>
       <h2>Ready to order? Let's go!</h2>
 
+      {/* <Form method='POST' action='/order/new'> */}
       <Form method='POST'>
         <div>
           <label>First Name</label>
@@ -89,24 +90,27 @@ function CreateOrder() {
 }
 
 export async function action({ request }) {
+  // INTERCEPT FORM SUBMISSION
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 
+  // CONVERT FORM JSON TO JS OBJECT
   const order = {
     ...data,
     cart: JSON.parse(data.cart),
     priority: data.priority === 'on',
   };
 
+  // HANDLE OBJECT ERRORS BACK TO FORM
   const errors = {};
   if (!isValidPhone(order.phone))
     errors.phone =
       'Please give us your correct phone number. We might need it to contact you.';
-
   if (Object.keys(errors).length > 0) return errors;
 
+  // CALL API WITH NEW VALID ORDER
+  // REDIRECT TO RETURNED OBJECT FROM API
   const newOrder = await createOrder(order);
-
   return redirect(`/order/${newOrder.id}`);
 }
 

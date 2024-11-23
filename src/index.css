@@ -2,13 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.layout {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: 32px;
-  height: 100dvh;
-}
-
 .loader {
   width: 45px;
   aspect-ratio: 0.75;

@@ -19,8 +19,8 @@ const router = createBrowserRouter([
       {
         path: '/menu',
         element: <Menu />,
-        loader: menuLoader,
         errorElement: <Error />,
+        loader: menuLoader,
       },
       { path: '/cart', element: <Cart /> },
       {
@@ -31,8 +31,8 @@ const router = createBrowserRouter([
       {
         path: '/order/:orderId',
         element: <Order />,
-        loader: OrderLoader,
         errorElement: <Error />,
+        loader: OrderLoader,
       },
     ],
   },
